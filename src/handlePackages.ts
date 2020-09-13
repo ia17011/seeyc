@@ -17,34 +17,31 @@ async function loadPackageJson(packageJsonPath: string): Promise<PackageJSON> {
  */
 export async function listPackages(packageJsonPath: string) {
   const spinner = ora('Loading package.json…').start()
-
   const packageJson = await loadPackageJson(packageJsonPath)
-  let packageSet: Set<string> = new Set<string>()
+  let packageSet = new Set<string>()
 
+  // remove @types package
   const typePackage = new RegExp('^@types/', 'g')
 
   if (typeof packageJson.dependencies !== 'undefined') {
-    for (const [packageName, _] of Object.entries(packageJson.dependencies)) {
-      if (typePackage.test(packageName)) {
+    for (const [pkgName, _] of Object.entries(packageJson.dependencies)) {
+      if (typePackage.test(pkgName)) {
         continue
       }
-      packageSet.add(packageName)
+      packageSet.add(pkgName)
     }
   }
 
   if (typeof packageJson.devDependencies !== 'undefined') {
-    for (const [packageName, _] of Object.entries(
-      packageJson.devDependencies,
-    )) {
-      if (typePackage.test(packageName)) {
+    for (const [pkgName, _] of Object.entries(packageJson.devDependencies)) {
+      if (typePackage.test(pkgName)) {
         continue
       }
-      packageSet.add(packageName)
+      packageSet.add(pkgName)
     }
   }
 
   const packages: Packages = Array.from(packageSet)
-
   spinner.stop()
 
   return packages
