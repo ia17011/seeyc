@@ -1,0 +1,30 @@
+{
+  "name": "syc",
+  "version": "1.0.0",
+  "description": "seek your contribution from package.json",
+  "main": "dist/index.js",
+  "bin": {
+    "syc": "index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "publishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ia17011/syc.git"
+  },
+  "author": "ia17011",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ia17011/syc/issues"
+  },
+  "homepage": "https://github.com/ia17011/syc#readme",
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "typescript": "^4.0.2"
+  }
+}
