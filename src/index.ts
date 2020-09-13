@@ -1,50 +1,25 @@
-import * as fs from 'fs'
-import {PackageJSON} from './type'
+import {Packages, RepositoryItem} from './@types/type'
+import {listPackages} from './handlePackages'
+import {searchRepository} from './search'
+import {notNull} from './utils/utils'
 
-// const num: number = +process.argv[2]
-
-/**
- *
- * package.jsonをロードする
- */
-async function loadPackageJson(packageJsonPath: string): Promise<PackageJSON> {
-  const packageJson: PackageJSON = JSON.parse(
-    await fs.readFileSync(packageJsonPath, 'utf8'),
+async function getRepositoryItems(packages: Packages) {
+  let repositoryItems: (RepositoryItem | null)[] = []
+  for (let v of packages) {
+    const repo = await searchRepository(v)
+    repositoryItems.push(repo)
+  }
+  const nonNullablesRepositoryItems: RepositoryItem[] = repositoryItems.filter(
+    notNull,
   )
-  return packageJson
+  return nonNullablesRepositoryItems
 }
 
-/**
- *
- * package.jsonのdependenciesとdevDependenciesのパッケージのSetを作る
- */
-async function listPackages(packageJsonPath: string) {
-  const packageJson = await loadPackageJson(packageJsonPath)
-  let packages = new Set()
-
-  const typePackage = new RegExp('^@types/', 'g')
-
-  if (typeof packageJson.dependencies !== 'undefined') {
-    for (const [packageName, _] of Object.entries(packageJson.dependencies)) {
-      if (typePackage.test(packageName)) {
-        continue
-      }
-      packages.add(packageName)
-    }
-  }
-
-  if (typeof packageJson.devDependencies !== 'undefined') {
-    for (const [packageName, _] of Object.entries(
-      packageJson.devDependencies,
-    )) {
-      if (typePackage.test(packageName)) {
-        continue
-      }
-      packages.add(packageName)
-    }
-  }
-
-  console.log(packages)
+async function main() {
+  const packagePath = './package.json'
+  const packages = await listPackages(packagePath)
+  const repositoryItems = await getRepositoryItems(packages)
+  console.log(repositoryItems)
 }
 
-listPackages('./package.json')
+main()
