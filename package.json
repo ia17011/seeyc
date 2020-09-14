@@ -1,10 +1,10 @@
 {
-  "name": "syc",
-  "version": "1.0.0",
+  "name": "seeyc",
+  "version": "0.0.1",
   "description": "seek your contribution from package.json",
   "main": "dist/index.js",
   "bin": {
-    "syc": "./bin/syc.js"
+    "seeyc": "./bin/seeyc.js"
   },
   "files": [
     "dist"
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ia17011/syc.git"
+    "url": "git+https://github.com/ia17011/seeyc.git"
   },
   "author": "ia17011",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ia17011/syc/issues"
+    "url": "https://github.com/ia17011/seeyc/issues"
   },
-  "homepage": "https://github.com/ia17011/syc#readme",
+  "homepage": "https://github.com/ia17011/seeyc#readme",
   "devDependencies": {
     "@octokit/rest": "^18.0.5",
     "@types/cli-color": "^2.0.0",

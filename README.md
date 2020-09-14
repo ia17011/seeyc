@@ -1,4 +1,4 @@
-# syc
+# seeyc
 
 Seek your contribution from package.json.
 
@@ -8,7 +8,7 @@ When we join the new node project, there are some useful packages. But, we
 cannot check those packages from package.json easily. Those packages are also
 your contribution target.
 
-`syc` can provide list of packges GitHub infromation on terminal.
+`seeyc` can provide list of packges GitHub infromation on terminal.
 
 - URL
 - Description
@@ -19,17 +19,17 @@ your contribution target.
 ## Install
 
 ```bash
-$ npm install -g syc
+$ npm install -g seeyc
 ```
 
 ## Usage
 
-You should change directory same level with target package.json. `syc` check
+You should change directory same level with target package.json. `seeyc` check
 your package.json(depndencies and devDependencies) and ignore @types pakcages.
 
 ```bash
 $ cd your-node-project
-$ syc
+$ seeyc
 ```
 
 Get return information on terminal.
