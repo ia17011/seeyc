@@ -2,10 +2,33 @@
 
 Seek your contribution from package.json.
 
-## Usage
+## Motivation
+
+When we join the new node project, there are some useful packages. But, we
+cannot check those packages from package.json easily. Those packages are also
+your contribution target.
+
+`syc` can provide list of packges GitHub infromation on terminal.
+
+- URL
+- Description
+- open_issues_count
+- stargazers_count
+- updated_at
+
+## Install
 
 ```bash
-$ commmand
+$ npm install -g syc
 ```
 
-Create a page to easily check the package list from your package.json.
+## Usage
+
+You should change directory to same with target package.json.
+
+```bash
+$ cd your-node-project
+$ syc
+```
+
+Get return information on terminal.
